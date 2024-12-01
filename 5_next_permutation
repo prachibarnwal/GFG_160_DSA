@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& arr) {
+        int n = arr.size();
+
+        // Finding the pivot
+        int pivot = -1;
+        for (int i = n - 2; i >= 0; --i) {
+            if (arr[i] < arr[i + 1]) {
+                pivot = i;
+                break;
+            }
+        }
+
+        if (pivot == -1) {
+            reverse(arr.begin(), arr.end());
+            return;
+        }
+
+        // Find the element to swap with the pivot
+        for (int i = n - 1; i > pivot; --i) {
+            if (arr[i] > arr[pivot]) {
+                swap(arr[i], arr[pivot]);
+                break;
+            }
+        }
+
+        // Reverse the part of the array after the pivot
+        int left = pivot + 1, right = n - 1;
+        while (left < right) {
+            swap(arr[left], arr[right]);
+            left++;
+            right--;
+        }
+    }
+};
