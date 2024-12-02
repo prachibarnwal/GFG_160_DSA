@@ -1,0 +1,57 @@
+class Solution:
+    # Function to find the majority elements in the array
+    def findMajority(self, arr):
+        '''#Your Code goes here.
+        n = len(arr)
+        d = {}
+        nl = []
+        for i in arr:
+            if(i not in d):
+                d[i] = 1
+            else:
+                d[i] += 1
+        for i in d:
+            if(d[i] > n//3):
+                nl.append(i)
+        nl.sort()
+        return nl'''
+        #here we go againnnnnnnnnnnnnn!!!!!!
+        n = len(arr)
+        ele1, ele2, cnt1, cnt2 = -1, -1, 0, 0
+        for i in arr:
+            # if arr ele is same as cand1, it's count should inc
+            if i == ele1:
+                cnt1+=1
+            # if arr ele is same as cand2, it's count should inc
+            elif i == ele2:
+                cnt2+=1
+            #if cnt of 1st cand is 0, cand should be updated with current ele
+            elif cnt1 == 0:
+                ele1 = i
+                cnt1+=1
+            #if cnt of 2nd cand is 0, cand should be updated with current ele
+            elif cnt2 == 0:
+                ele2 = i
+                cnt2+=1
+            #if none of the condition matches
+            else:
+                cnt1 -= 1
+                cnt2 -= 1
+        res = []
+        cnt1, cnt2 = 0,0
+        #counting number of occurences of both elements
+        for i in arr:
+            if i == ele1:
+                cnt1+=1
+            if i == ele2:
+                cnt2+=1
+        #checking whether they are MAJORITY ELEMENT or NOT
+        if(cnt1 > n/3): res.append(ele1)
+        if(cnt2>n/3 and ele2!= ele1): res.append(ele2)
+        
+        #sorting the array
+        if(len(res) == 2 and res[1] < res[0]): 
+            res[0], res[1] = res[1], res[0]
+        
+        return res
+# really really loved solving this problem bruhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
