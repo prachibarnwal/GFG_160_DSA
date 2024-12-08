@@ -1,0 +1,22 @@
+//rotating array by d elements
+void reverse(vector<int> &arr, int start, int end){
+        while(start < end){
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+    void rotateArr(vector<int>& arr, int d) {
+        // chalo start karein 
+        int n = arr.size();
+        if(d > n) d = d%n;
+        
+        //first half reversal
+        reverse(arr, 0, d-1);
+        //second half reversal
+        reverse(arr, d, n-1);
+        //final reversing
+        reverse(arr, 0, n-1);
+    }
