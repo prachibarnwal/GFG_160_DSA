@@ -1,0 +1,26 @@
+int getMinDiff(vector<int> &arr, int k) {
+        // code here
+        int n = arr.size();
+        
+        //sorting the arr
+        sort(arr.begin(), arr.end());
+        
+        //setting min height diff as diff of 1st and last ele
+        int result = arr[n-1] - arr[0];
+        
+        for(int i = 1;i<n; i++){
+            //skip further process if height of tower becomes negative
+            //and proceed with the next tower :) 
+            if(arr[i] - k < 0){
+                continue;
+            }
+            //taking the min height
+            int minh = min(arr[0]+k, arr[i] -k);
+            //max height
+            int maxh = max(arr[i-1]+k, arr[n-1] -k);
+            //re-assigning the value of result
+            result = min(result, maxh - minh);
+        }
+        
+        return result;
+    }
