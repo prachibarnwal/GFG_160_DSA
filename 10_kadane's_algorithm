@@ -1,0 +1,17 @@
+int maxSubarraySum(vector<int> &arr) {
+    
+        int n = arr.size();
+        int res = arr[0], maxEnd = arr[0];
+        
+        for(int i = 1;i<n;i++){
+            //start of a new subarray from index i 
+            // or
+            //calculating maximum sumtill that index i
+            maxEnd = max(maxEnd + arr[i], arr[i]);
+            
+            //assigning the maximum sum of subarray to res
+            res = max(res, maxEnd);
+        }
+        
+        return res;
+    }
