@@ -1,0 +1,32 @@
+int maxProduct(vector<int> &arr) {
+        /*
+        //Approach 1
+        int maxEnd = arr[0];
+        int minEnd = arr[0];
+        int maxProd = arr[0];
+        int temp;
+        int n = arr.size();
+        for(int i = 1;i<n;i++){
+            temp = max(arr[i], max(minEnd * arr[i], maxEnd * arr[i]));
+            minEnd = min(arr[i], min(minEnd * arr[i], maxEnd * arr[i]));
+            maxEnd = temp;
+            maxProd = max(maxEnd, maxProd);
+        }
+        return maxProd;
+        */
+        //Approach 2
+        int n = arr.size();
+        int maxProd = INT_MIN;
+        int ltr = 1, rtl = 1;
+        for(int i = 0;i<n;i++){
+            if(ltr == 0) ltr = 1;
+            if(rtl == 0) rtl = 1;
+            
+            ltr *= arr[i];
+            
+            rtl *= arr[n-i-1];
+            
+            maxProd = max(maxProd, max(rtl, ltr));
+        }
+        return maxProd;
+    }
