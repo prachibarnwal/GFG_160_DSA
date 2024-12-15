@@ -1,0 +1,43 @@
+string trimlz(const string &s){
+        size_t f = s.find('1');
+        return (f == string::npos) ? "0" : s.substr(f);
+    }
+    string addBinary(string& s1, string& s2) {
+        //trimming leading zeroes
+        s1 = trimlz(s1);
+        s2 = trimlz(s2);
+        
+        //calc size of both the strings
+        int n = s1.size();
+        int m = s2.size();
+        //swapping strings if s1 is smaller
+        if(n < m)
+            return addBinary(s2, s1);
+        
+        int x = m-1;
+        int carry = 0;
+        
+        for(int i = n-1; i >=0;i--){
+            //current bit in s1;
+            int bit1 = s1[i] - '0', bit2 = 0, sum;
+            
+            //current bit in s2;
+            if(x >= 0){
+                bit2 = s2[x--] - '0';
+            }
+            //clalc sum;
+            sum = bit1 + bit2 + carry;
+            
+            //calc result bit and updating carry bit
+            int bit = sum % 2;
+            carry = sum / 2;
+            
+            //updating current bit in s1 or resulting string
+            s1[i] = (char)(bit + '0');
+        }
+        
+        //checking for remaining carry
+        if(carry > 0)
+            s1 = '1' + s1;
+        return s1;
+    }
