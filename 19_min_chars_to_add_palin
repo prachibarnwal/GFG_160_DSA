@@ -1,0 +1,40 @@
+/*
+Given a string s, the task is to find the minimum characters to be 
+added at the front to make the string palindrome.
+
+Note: A palindrome string is a sequence of characters 
+that reads the same forward and backward.
+*/
+
+vector<int> computeLPS(string &s){
+        int n = s.length(), len = 0, i = 1;
+        vector<int> lps(n);
+        
+        lps[0] = 0;
+        while(i<n){
+            if(s[i] ==s[len])
+                lps[i++] = ++len;
+            else if(s[i] != s[len]){
+                if(len != 0)
+                    len = lps[len-1];
+                else
+                    lps[i++] = 0;
+            }
+        }
+        return lps;
+    }
+    int minChar(string& s) {
+        int n = s.length();
+        
+        string rev = s;
+        reverse(rev.begin(), rev.end());
+        
+        s = s + "$" + rev;
+        
+        vector<int> lps = computeLPS(s);
+        
+        return(n - lps.back());
+    }
+    //time complexity : O(n)
+    //space complexity : O(n)
+    
