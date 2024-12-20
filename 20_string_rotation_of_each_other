@@ -1,0 +1,52 @@
+/*
+You are given two strings of equal lengths, s1 and s2. 
+The task is to check if s2 is a rotated version of the string s1.
+
+Note: The characters in the strings are in lowercase.
+*/
+vector<int> calcLPS(string &pat){
+        int n = pat.size();
+        vector<int> arr(n);
+        
+        int len = 0, i = 1;
+        arr[0] = 0;
+        
+        while(i<n){
+            if(pat[i] == pat[len])
+                arr[i++] = ++len;
+            else{
+                if(len!= 0){
+                    len = arr[len-1];
+                }
+                else
+                    arr[i++] = 0;
+            }
+        }
+        return arr;
+    }
+    bool areRotations(string &s1, string &s2) {
+        string txt = s1 + s1;
+        string pattern = s2;
+        
+        int n = txt.length();
+        int m = pattern.length();
+        
+        vector<int> lps = calcLPS(pattern);
+        int i = 0, j = 0;
+        
+        while(i<n){
+            if(pattern[j] == txt[i])
+                j++; i++;
+                
+            if(j==m)
+                return true;
+            
+            else if(i < n && pattern[j] != txt[i]){
+                if(j!=0)
+                    j = lps[j-1];
+                else
+                    i++;
+            }
+        }
+        return false;
+    }
