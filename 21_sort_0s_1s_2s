@@ -1,0 +1,25 @@
+//Given an array arr[] containing only 0s, 1s, and 2s. Sort the array in ascending order.
+
+void sort012(vector<int>& arr) {
+        // code here
+        int beg = 0, end = arr.size()-1, med = 0;
+        while(med<=end){
+            if(arr[med] == 0){
+                int temp = arr[med];
+                arr[med] = arr[beg];
+                arr[beg] = temp;
+                beg++;
+                med++;
+            }
+            else if(arr[med] == 1){
+                med++;
+            }
+            else{
+                int temp = arr[end];
+                arr[end] = arr[med];
+                arr[med] = temp;
+                end--;
+            }
+            
+        }
+    }
