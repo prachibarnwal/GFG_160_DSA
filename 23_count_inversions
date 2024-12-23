@@ -1,0 +1,74 @@
+/*
+Given an array of integers arr[]. Find the Inversion Count in the array.
+Two elements arr[i] and arr[j] form an inversion if arr[i] > arr[j] and i < j.
+
+Inversion Count: For an array, inversion count indicates how far (or close) the 
+array is from being sorted. If the array is already sorted then the inversion count is 0.
+If an array is sorted in the reverse order then the inversion count is the maximum. 
+*/
+
+
+//merging two sorted subarray
+    //inversion count in both the subarrays
+    //seems like a good one ........ahhhhh
+    int countAndMerge(vector<int> &arr, int l, int m, int r){
+        //length of both the subarrays
+        int len1 = m-l+1, len2 = r-m;
+      
+        //two arrays having left and right halves
+        vector<int> left(len1), right(len2);
+        for(int i = 0;i<len1;i++){
+            left[i] = arr[l+i];
+        }
+        for(int i = 0;i<len2;i++){
+            right[i] = arr[m+1+i];
+        }
+        //initializing inversion count
+        //merging those two subarrays
+        int res = 0, i = 0, j = 0, k = l;
+      
+        while(i < len1 && j < len2){
+            //inversion count will not increase
+            // if left array val is lesser or equal
+            if(left[i] <= right[j])
+                arr[k++] = left[i++];
+            // if right arr val is smaller
+            // that means that val is smaller than len1-i elements
+            else{
+                arr[k++] = right[j++];
+                res += (len1 - i);
+            }
+        }
+        //merging remaining elements
+        while(i<len1){
+            arr[k++] = left[i++];
+        }
+        while(j<len2){
+            arr[k++] = right[j++];
+        }
+        return res;
+    }
+    //counting inversion in the arr
+    int countInv(vector<int> &arr, int l, int r){
+        int res = 0;
+        
+        if(l<r){
+            int m = (l+r)/2;
+            //lo aagya recursion
+            //counting inversions in left and right arr
+            res += countInv(arr, l, m);
+            res += countInv(arr, m+1, r);
+            
+            //coutnign inversions
+            //in case left arr val is > right arr val
+            res += countAndMerge(arr, l, m, r);
+        }
+        return res;
+    }
+    
+    //lo aagya bhaaya main function
+    // not int main though >____________<
+    int inversionCount(vector<int> &arr) {
+        int n = arr.size();
+        return countInv(arr, 0, n-1);
+    }
