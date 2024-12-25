@@ -1,0 +1,27 @@
+vector<vector<int>> insertInterval(vector<vector<int>> &intervals,
+                                       vector<int> &newInt) {
+        vector<vector<int>> res;
+        int i = 0, n = intervals.size();
+        
+        //pushing intervals before adding the new interval
+        while(i < n && intervals[i][1] < newInt[0]){
+            res.push_back(intervals[i++]);
+        }
+        
+        //pushing new interval taking 
+        //care of overlapping ones too >_<
+        while(i<n && intervals[i][0] <= newInt[1]){
+            newInt[0] = min(intervals[i][0], newInt[0]);
+            newInt[1] = max(intervals[i][1], newInt[1]);
+            i++;
+        }
+        res.push_back(newInt);
+        
+        //pushing intervals after adding the new one
+        while(i<n){
+            res.push_back(intervals[i++]);
+        }
+        //time complexity: O(n);
+        //space complexity: O(n);
+        return res;
+    }
