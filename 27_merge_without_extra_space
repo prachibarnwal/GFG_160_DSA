@@ -1,0 +1,27 @@
+/*
+Given two sorted arrays a[] and b[] of size n and m respectively, 
+the task is to merge them in sorted order without using any extra space. 
+Modify a[] so that it contains the first n elements and modify b[] 
+so that it contains the last m elements.
+*/
+
+void mergeArrays(vector<int>& a, vector<int>& b) {
+        //chalo chalein 
+        int m = a.size();
+        int n = b.size();
+        
+        int i = m - 1, j = 0;
+        //solving it through swap and sort technique
+        while(i >= 0 && j < n && a[i] > b[j]){
+            swap(a[i--], b[j++]);
+        }
+        
+        sort(a.begin(), a.end());
+        sort(b.begin(), b.end());
+        //time complexity : O(m+n) + O(n log n) + O(m log m){
+        //    O(m+n) = iterated through both the arrays for swapping;
+        //    O(m log m) : for sorting array 'a';
+        //    O(n log n) : for sorting array 'b';
+        //}
+        //space complexity : O(1);
+    }
