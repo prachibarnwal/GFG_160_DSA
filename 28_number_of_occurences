@@ -1,0 +1,58 @@
+//Given a sorted array, arr[] and a number target, you need 
+//to find the number of occurrences of target in arr[]. 
+
+int countFreq(vector<int>& arr, int target) {
+        /*
+        //brute force aproach using linear search
+        int n = arr.size(), cnt = 0;
+        for(int i= 0;i<n;i++){
+            if(arr[i] <= target && arr[i] == target){
+                cnt++;
+            }
+        }
+        //time complexity: O(n);
+        //space complexity: O(1);
+        return cnt;
+        */
+        
+        //optimized approach using binary search;
+        int lowerB = lowerBound(arr, target); 
+        int upperB = upperBound(arr, target);
+        return upperB - lowerB;
+        //main code toniche hai
+        // par whatever >_<
+    }
+    int upperBound(vector<int> &arr, int target){
+        int n = arr.size();
+        int beg = 0, end = n-1, upp_b = n, med;
+        while(beg <= end){
+            med = (end + beg) / 2;
+            if(arr[med] > target){
+                upp_b = med;
+                end = med - 1;
+            }
+            else{
+                beg = med + 1;
+            }
+        }
+        return upp_b;
+    }
+    int lowerBound(vector<int> &arr, int target){
+        int n = arr.size();
+        int beg = 0, end = n-1, low_b = n, med;
+        while(beg <= end){
+            med = (beg + end) / 2;
+            // '>' checking because what lower bound ka concept is 
+            // ki agar ele 'x' is not there in the arr then it'll 
+            // return the index where it should be inserted in 
+            // **a sorted array** 
+            if(arr[med] >= target){
+                low_b = med;
+                end = med -1;
+            }
+            else{
+                beg = med+1;
+            }
+        }
+        return low_b;
+    }
