@@ -1,0 +1,30 @@
+int findMin(vector<int>& arr) {
+        /*
+        //brute-force approach
+        //time complexity : O(N);
+        //space complexity: O(1);
+        int n = arr.size();
+        int minn = arr[0];
+        for(int i = 1;i<n;i++){
+            if(arr[i] < minn)
+                minn = arr[i];
+        }
+        return minn;
+        */
+        //optimized approach using binary search
+        int beg = 0, end = arr.size()-1, med;
+        while(beg < end){
+            if(arr[beg] < arr[end])
+                return arr[beg];
+            med = (beg+end) / 2;
+            if(arr[med] > arr[end]){
+                beg = med + 1;
+            }
+            else{
+                end = med;
+            }
+        }
+        return arr[beg];
+        //time complexity: O(log n);
+        //space complexity: O(1);
+    }
