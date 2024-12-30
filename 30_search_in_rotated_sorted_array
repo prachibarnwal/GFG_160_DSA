@@ -1,0 +1,33 @@
+/*
+Given a sorted and rotated array arr[] of distinct elements, 
+the task is to find the index of a target key. Return -1 if the key is not found.
+*/
+int search(vector<int>& arr, int key) {
+        int beg = 0, end = arr.size()-1, med;
+        while(beg <= end){
+            med = (end+beg) / 2;
+            if(arr[med] == key)
+                return med;
+            // in case if left half is sorted
+            if(arr[med] >= arr[beg]){
+                //searching in the left half
+                if(key >= arr[beg] && key < arr[med])
+                    end = med-1;
+                //searching in the right half
+                else
+                    beg = med+1;
+            }
+            //in case if right half is sorted
+            else{
+                //searching in right half
+                if(key <= arr[end] && key > arr[med])
+                    beg = med+1;
+                //searching in left half
+                else
+                    end = med-1;
+            }
+        }
+        //time complexity: O(log n)
+        //space complexity: O(1)
+        return -1;
+    }
