@@ -1,0 +1,29 @@
+/*
+Given an array arr[] where no two adjacent elements are same, find the index 
+of a peak element. An element is considered to be a peak if it is greater than 
+its adjacent elements (if they exist). If there are multiple peak elements, 
+return index of any one of them. The output will be "true" if the index 
+returned by your function is correct; otherwise, it will be "false".
+*/
+
+int peakElement(vector<int> &arr) {
+        int n = arr.size();
+        if(n == 1 || arr[0] > arr[1])
+            return 0;
+        if(arr[n-1] > arr[n-2])
+            return n-1;
+        
+        int beg = 1, end = n-2, med;
+        while(beg <= end){
+            med = (beg+end) / 2;
+            if(arr[med] > arr[med-1] && arr[med] > arr[med+1])
+                return med;
+            if(arr[med] > arr[med+1])
+                end = med - 1;
+            else
+                beg = med+1;
+        }
+        // a good and interesting one though WITH
+        //tiem complexity: O(log n);
+        //space compelxity: O(1);
+    }
