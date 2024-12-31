@@ -1,0 +1,24 @@
+/*
+Given two sorted arrays a[] and b[] and an element k, the task is to 
+find the element that would be at the kth position of the combined sorted array.
+*/
+
+int kthElement(vector<int>& a, vector<int>& b, int k) {
+        int i = 0, j = 0, m = a.size(), n = b.size(), ele = 0;
+        for(int x = 0;x<k;x++){
+            if(i < m){
+                if(j < n && b[j] < a[i]){
+                    ele = b[j++];
+                }
+                else{
+                    ele = a[i++];
+                }
+            }
+            else if(j<n){
+                ele = b[j++];
+            }
+        }
+        //time complexity: O(k);
+        //space complexity: O(1);
+        return ele;
+    }
