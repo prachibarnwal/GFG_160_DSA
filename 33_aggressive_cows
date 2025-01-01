@@ -1,0 +1,35 @@
+
+/*
+ou are given an array with unique elements of stalls[], which denote the position of a stall. 
+You are also given an integer k which denotes the number of aggressive cows. Your task is to 
+assign stalls to k cows such that the minimum distance between any two of them is the maximum possible.
+*/
+
+bool canPlaceCows(const vector<int>& stalls, int k, int dist){
+        int cnt = 1, lp = stalls[0];
+        for(int i = 1; i < stalls.size();i++){
+            if(stalls[i] - lp >= dist){
+                cnt++;
+                lp = stalls[i];
+                if(cnt == k) return true;
+            }
+        }
+        return false;
+    }
+    int aggressiveCows(vector<int> &stalls, int k){
+        sort(stalls.begin(), stalls.end());
+        
+        int low = 1; 
+        int high = stalls.back() - stalls.front(), res = 0;
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            if(canPlaceCows(stalls, k, mid)){
+                res = mid;
+                low = mid + 1;
+            }
+            else{
+                high = mid - 1;
+            }
+        }
+        return res;
+    }
