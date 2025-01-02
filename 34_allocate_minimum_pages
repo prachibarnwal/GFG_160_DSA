@@ -1,0 +1,34 @@
+bool TF(const vector<int> &arr, int n, int k, int mp){
+        int stu = 1, pageA = 0;
+        for(int i = 0; i<n;i++){
+            if(arr[i] > mp)
+                return false;
+            if(pageA + arr[i] > mp){
+                stu++;
+                pageA = arr[i];
+                if(stu > k)
+                    return false;
+            }
+            else
+                pageA += arr[i];
+        }
+        return true;
+    }
+    int findPages(vector<int> &arr, int k) {
+        int n = arr.size();
+        if(n<k)
+            return -1;
+        int beg = *max_element(arr.begin(), arr.end());
+        int end = accumulate(arr.begin(),arr.end(), 0);
+        int res = -1;
+        while(beg <= end){
+            int med = (beg+end) /2;
+            if(TF(arr,n, k, med)){
+                res = med;
+                end = med-1;
+            }
+            else
+                beg = med+1;
+        }
+        return res;
+    }
