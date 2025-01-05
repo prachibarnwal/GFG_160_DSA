@@ -1,0 +1,27 @@
+/*
+Given a 2D integer matrix mat[][] of size n x m, where 
+every row and column is sorted in increasing order and 
+a number x, the task is to find whether element x is present in the matrix.
+*/
+
+bool matSearch(vector<vector<int>> &mat, int x) {
+        int m = mat.size();
+        int n = mat[0].size();
+        
+        int i = 0, j = n - 1;
+        
+        while(i < m && j >= 0){
+            if(x > mat[i][j]){
+                i++;
+            }
+            else if(x < mat[i][j]){
+                j--;
+            }
+            else{
+                return true;
+            }
+        }
+        return false;
+        //tC: O(n) + O(m);
+        //sC: O(1);
+    }
