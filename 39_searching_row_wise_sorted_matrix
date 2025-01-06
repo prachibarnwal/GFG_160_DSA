@@ -1,0 +1,36 @@
+/*
+Given a row-wise sorted 2D matrix mat[][] of size n x m and an integer x, 
+find whether element x is present in the matrix.
+Note: In a row-wise sorted matrix, each row is sorted in itself, i.e. 
+for any i, j within bounds, mat[i][j] <= mat[i][j+1].
+*/
+
+//binary search again
+    //hehehehhehehehehe
+    bool search(vector<int> &arr, int x){
+        int beg = 0, end = arr.size()-1, mid;
+        while(beg <= end){
+            mid = (beg+end)/2;
+            if(x == arr[mid])
+                return true;
+            else if(arr[mid] > x){
+                end = mid-1;
+            }
+            else{
+                beg = mid+1;
+            }
+        }
+        return false;
+    }
+
+    bool searchRowMatrix(vector<vector<int>> &mat, int x){
+        int m = mat.size(), n = mat[0].size();
+        for(int i = 0; i< m;i++){
+            if(search(mat[i], x)){
+                return true;
+            }
+        }
+        return false;
+    }
+    //tC: O(m * log n);
+    //sC: O(1);
