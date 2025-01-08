@@ -9,7 +9,7 @@ vector<int> spirallyTraverse(vector<vector<int> > &mat) {
         
         int top = 0, bottom = row - 1;
         int left = 0, right = col - 1;
-        
+        //using boundary traversal
         vector<int> res;
         while(top <= bottom && left <= right){
             for(int i = left; i <= right;i++){
@@ -34,4 +34,6 @@ vector<int> spirallyTraverse(vector<vector<int> > &mat) {
             }
         }
         return res;
+        //tC: O(M*N);
+        //sC: O(1);
     }
