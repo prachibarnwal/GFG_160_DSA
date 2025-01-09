@@ -1,0 +1,48 @@
+/*
+    //function for implementing binary search
+    bool bs(vector<int> &arr, int beg, int end, int x){
+        while(beg<=end){
+            int med = (beg+end)/2;
+            if(arr[med] == x)
+                return true;
+            else if(arr[med] > x)
+                end = med-1;
+            else
+                beg = med+1;
+        }
+        return false;
+    }
+    
+    bool twoSum(vector<int>& arr, int target){
+        sort(arr.begin(), arr.end());
+        int n = arr.size(), rest;
+    
+        for(int i = 0;i<n;i++){
+            rest = target - arr[i];
+            if(bs(arr, i+1, n-1, rest))
+                return true;
+        }
+        return false;
+    }
+    //tC: O(n * log n);
+    //sC: O(1);
+    */
+    
+    //using hash set
+    bool twoSum(vector<int>& arr, int target){
+        unordered_set<int> x;
+        int rest;
+        for(int i= 0;i<arr.size();i++){
+            rest = target - arr[i];
+            
+            //.find() returns an iterator
+            // if not foud it'll give o/p as .end()
+            if(x.find(rest) != x.end())
+                return true;
+                
+            x.insert(arr[i]);
+        }
+        return false;
+        //tC: O(n);
+        //sC: O(n);
+    }
