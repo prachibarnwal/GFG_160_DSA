@@ -1,0 +1,42 @@
+void setMatrixZeroes(vector<vector<int>> &mat) {
+        int m = mat.size();
+        int n = mat[0].size();
+        
+        int xx = 1;
+        
+        //setting rows and columns as zero
+        //in case ele in that row/col is zero
+        for(int i = 0; i<m;i++){
+            for(int j = 0; j<n;j++){
+                if(mat[i][j] == 0){
+                    mat[i][0] = 0;
+                    
+                    if(j == 0)
+                        xx = 0;
+                    else
+                        mat[0][j] = 0;
+                }
+            }
+        }
+        
+        //setting zeroes to the rows/cols 
+        //if 0 indexed ele are zero
+        for(int i = 1;i<m;i++){
+            for(int j = 1;j<n;j++){
+                if(mat[i][0] == 0 || mat[0][j] == 0)
+                    mat[i][j] = 0;
+            }
+        }
+        //setting for zeroth row (if needed)
+        if(mat[0][0] == 0){
+            for(int i = 0;i<n;i++)
+                mat[0][i] = 0;
+        }
+        //setting for zeroth col (if needed)
+        if(xx == 0){
+            for(int i = 0;i<m;i++)
+                mat[i][0] = 0;
+        }
+        //tC: O(n*m);
+        //sC: O(1);
+    }
