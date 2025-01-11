@@ -6,7 +6,8 @@ increasing order, and the first element of the ith row (i!=0) is
 greater than the last element of the (i-1)th row.
 */
 
-bool search(vector<int> &arr, int x){
+/*
+    bool search(vector<int> &arr, int x){
         int beg = 0, end = arr.size()-1, med;
         while(beg <= end){
             med = (beg+end)/2;
@@ -20,7 +21,7 @@ bool search(vector<int> &arr, int x){
     }
     
     bool searchMatrix(vector<vector<int>> &mat, int x) {
-        int n = mat.size(), a = -1, row = -1;
+        int n = mat.size(), row = -1;
         int beg = 0, end = n-1, med;
         while(beg<=end){
             med = (beg+end) / 2;
@@ -41,3 +42,27 @@ bool search(vector<int> &arr, int x){
     //most cluttered code EVER ig ~_~~
     //tC: o(log m + log n);
     //sc: o(1);
+    */
+
+
+    bool searchMatrix(vector<vector<int>> &mat, int x){
+        int m = mat.size();
+        int n = mat[0].size();
+        int beg = 0, end = (m*n) - 1, med;
+        int row, col;
+        
+        while(beg <= end){
+            med = (beg + end) / 2;
+            row = med / n;
+            col = med % n;
+            if(mat[row][col] == x)
+                return true;
+            else if(mat[row][col] > x)
+                end = med - 1;
+            else
+                beg = med+1;
+        }
+        return false;
+        //tC : O(log mn);
+        //sC : O(1);
+    }
