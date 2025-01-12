@@ -1,0 +1,40 @@
+/*
+Given an array arr[], find all possible triplets i, j, k in 
+the arr[] whose sum of elements is equals to zero. 
+Returned triplet should also be internally sorted i.e. i<j<k.
+*/
+
+vector<vector<int>> findTriplets(vector<int> &arr){
+        set<vector<int>> resSet;
+        int n = arr.size();
+        
+        unordered_map<int, vector<pair<int, int>>> m;
+        
+        //storing sum of pairs along with their indices
+        for(int i = 0;i<n;i++){
+            for(int j = i+1; j<n; j++){
+                m[arr[i] + arr[j]].push_back({i, j});
+            }
+        }
+        
+        for(int i = 0;i<n;i++){
+            //searching for the third val
+            int rem = -arr[i];
+            if(m.find(rem) != m.end()){
+                vector<pair<int, int>>pairs = m[rem];
+                //checking no two indices are same
+                for(auto p : pairs){
+                    if(p.first != i && p.second != i){
+                        vector<int> curr = {i, p.first, p.second};
+                        
+                        sort(curr.begin(), curr.end());
+                        resSet.insert(curr);
+                    }
+                }
+            }
+        }
+        vector<vector<int>> res(resSet.begin(), resSet.end());
+        return res;
+        //tC: O(n**3);
+        //sC: O(n**2);
+    }
