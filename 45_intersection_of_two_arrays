@@ -30,8 +30,6 @@ Note: The driver code will sort the resulting array in increasing order before p
     vector<int> intersectionWithDuplicates(vector<int>& a, vector<int>& b) {
         unordered_set<int> x(a.begin(), a.end());
         
-        //unordered_set<int> y;
-        
         vector<int> res;
         
         for(int i = 0;i<b.size(); i++){
