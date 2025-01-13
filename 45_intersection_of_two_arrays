@@ -1,0 +1,46 @@
+/*
+Given two integer arrays a[] and b[], you have to find the intersection of the two arrays. 
+Intersection of two arrays is said to be elements that are common in both arrays. 
+The intersection should not have duplicate elements and the result should contain items in any order.
+
+Note: The driver code will sort the resulting array in increasing order before printing.
+*/
+
+/*
+    //using two HASH SETS
+    vector<int> intersectionWithDuplicates(vector<int>& a, vector<int>& b) {
+        unordered_set<int> x(a.begin(), a.end());
+        
+        unordered_set<int> y;
+        
+        vector<int> res;
+        
+        for(int i = 0;i<b.size(); i++){
+            if(x.find(b[i]) != x.end() && y.find(b[i]) == y.end()){
+                res.push_back(b[i]);
+                y.insert(b[i]);
+            }
+        }
+        //tC: O(n + m);
+        //sC: O(n);
+        return res;
+    }
+    */
+    //using one HASH SET
+    vector<int> intersectionWithDuplicates(vector<int>& a, vector<int>& b) {
+        unordered_set<int> x(a.begin(), a.end());
+        
+        //unordered_set<int> y;
+        
+        vector<int> res;
+        
+        for(int i = 0;i<b.size(); i++){
+            if(x.find(b[i]) != x.end()){
+                res.push_back(b[i]);
+                x.erase(b[i]);
+            }
+        }
+        //tC: O(n + m);
+        //sC: O(n);
+        return res;
+    }
