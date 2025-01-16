@@ -1,0 +1,40 @@
+/*
+Given an array of strings, return all groups of strings that are anagrams. 
+The strings in each group must be arranged in the order of their appearance 
+in the original array. Refer to the sample case for clarification.
+*/
+
+const int mx = 26;
+string getHash(string &s){
+        string hash;
+        vector<int> f(mx, 0);
+        
+        for(char ch : s){
+            f[ch - 'a']++;
+        }
+        for(int i = 0;i< mx; i++){
+            hash.append(to_string(f[i]));
+            hash.append("~");
+        }
+        
+        return hash;
+    }
+    vector<vector<string>> anagrams(vector<string>& arr){
+        vector<vector<string>> res;
+        
+        unordered_map<string, int> mm;
+        
+        for(int i = 0;i<arr.size(); i++){
+            string key = getHash(arr[i]);
+            //in case key ain't there in the hash map
+            if(mm.find(key) == mm.end()){
+                mm[key] = res.size();
+                res.push_back({});
+            }
+            //inserting the string in its correct group
+            res[mm[key]].push_back(arr[i]);
+        }
+        //tC: O(n*k);
+        //sC: O(n*k);
+        return res;
+    }
