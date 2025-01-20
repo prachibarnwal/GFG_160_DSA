@@ -1,0 +1,24 @@
+/*
+Given an array arr[] and an integer target. You have to find 
+the number of pairs in the array whose sum is strictly less than the target.
+*/
+
+//two pointers technique: 
+    int countPairs(vector<int> &arr, int k) {
+        sort(arr.begin(), arr.end());
+        int cnt = 0, beg = 0, end = arr.size() - 1;
+        
+        while(beg < end){
+            int s = arr[beg] + arr[end];
+            if(s < k){
+                cnt += end-beg;
+                beg++;
+            }
+            else{
+                end--;
+            }
+        }
+        //tC: O(n log n);
+        //sC: O(n);
+        return cnt;
+    }
