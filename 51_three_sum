@@ -1,0 +1,39 @@
+/*
+Given a sorted array arr[] and a target value, the task is to count triplets (i, j, k) 
+of valid indices, such that arr[i] + arr[j] + arr[k] = target and i < j < k.
+*/
+
+int countTriplets(vector<int> &arr, int k) {
+        int n = arr.size(), cnt = 0;
+        int left, right;
+        //two pointer approach ~_~~
+        for(int i = 0;i<n - 2;i++){
+            left = i+1; right = n-1;
+            while(left < right){
+                int s = arr[i] + arr[left] + arr[right];
+                
+                if(s == k){
+                    int e1 = arr[left], e2 = arr[right];
+                    int cnt1 = 0, cnt2 = 0;
+                    //frequency of the current value at index 'left'
+                    while(left <= right && arr[left] == e1){
+                        left++; cnt1++;
+                    }
+                    //frequency of the current value at index 'right'
+                    while(left <= right && arr[right] == e2){
+                        right--; cnt2++;
+                    }
+                    //cobination logic for adding triplets
+                    if(e1==e2)
+                        cnt += (cnt1 * (cnt1 - 1)) / 2;
+                    else
+                        cnt += (cnt1 * cnt2);
+                }
+                else if(s < k)
+                    left++;   
+                else
+                    right--;
+            }
+        }// tC: O(n**2); sC: O(1);
+        return cnt;
+    }
