@@ -19,6 +19,6 @@ the number of pairs in the array whose sum is strictly less than the target.
             }
         }
         //tC: O(n log n);
-        //sC: O(n);
+        //sC: O(1);
         return cnt;
     }
