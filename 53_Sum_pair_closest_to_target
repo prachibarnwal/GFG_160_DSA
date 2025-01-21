@@ -1,0 +1,36 @@
+/*
+Given an array arr[] and a number target, find a pair of elements 
+(a, b) in arr[], where a<=b whose sum is closest to target.
+Note: Return the pair in sorted order and if there are multiple such 
+pairs return the pair with maximum absolute difference. 
+If no such pair exists return an empty array.
+*/
+
+//two pointers technique >_<
+    vector<int> sumClosest(vector<int>& arr, int t) {
+        sort(arr.begin(), arr.end());
+        int beg = 0, end = arr.size() - 1;
+        vector<int> res;
+        int mindif = INT_MAX;
+        
+        while(beg < end){
+            int cur = arr[beg] + arr[end];
+            
+            if(abs(t - cur) < mindif){
+                mindif = abs(t - cur);
+                res = {arr[beg], arr[end]};
+            }
+            
+            if(cur > t){
+                end--;
+            }
+            else if(cur < t){
+                beg++;
+            }
+            else{
+                return res;
+            }
+        }//tC: O(n log n);
+        //sC: O(1);
+        return res;
+    }
