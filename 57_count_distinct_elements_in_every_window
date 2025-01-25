@@ -1,0 +1,28 @@
+/*
+Given an integer array arr[] and a number k. Find the 
+count of distinct elements in every window of size k in the array.
+*/
+
+vector<int> countDistinct(vector<int> &arr, int k) {
+        vector<int> res;
+        unordered_map<int, int> f;
+        //for the first window
+        for(int i = 0;i<k;i++){
+            f[arr[i]] += 1;
+        }
+        res.push_back(f.size());
+        //for rest of the windows
+        for(int i = k; i < arr.size(); i++){
+            //adding count of the next element
+            f[arr[i]] += 1;
+            //removing count of the first/previous element
+            f[arr[i-k]] -= 1;
+            
+            if(f[arr[i-k]] == 0){
+                f.erase(arr[i-k]);
+            }
+            res.push_back(f.size());
+        }//tC: O(n);
+        //sC: O(k);
+        return res;
+    }
