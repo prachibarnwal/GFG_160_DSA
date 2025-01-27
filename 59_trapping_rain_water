@@ -1,0 +1,26 @@
+/*
+Given an array arr[] with non-negative integers 
+representing the height of blocks. If the width 
+of each block is 1, compute how much water can be 
+trapped between the blocks during the rainy season.
+*/
+
+int maxWater(vector<int> &arr){
+        int l = 1, r = arr.size() - 2;
+        int lm = arr[l - 1], rm = arr[r+1];
+        int res = 0;
+        
+        while(l <= r){
+            if(rm <= lm){
+                res+= max(0, rm - arr[r]);
+                rm = max(rm, arr[r]);
+                r--;
+            }
+            else{
+                res += max(0, lm - arr[l]);
+                lm = max(lm, arr[l]);
+                l++;
+            }//tC: O(n); sC: O(1);
+        }
+        return res;
+    }
