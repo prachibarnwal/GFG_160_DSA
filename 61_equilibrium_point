@@ -1,0 +1,29 @@
+/*
+Given an array of integers arr[], the task is 
+to find the first equilibrium point in the array.
+
+The equilibrium point in an array is an index 
+(0-based indexing) such that the sum of all elements 
+before that index is the same as the sum of elements 
+after it. Return -1 if no such point exists. 
+*/
+
+// Function to find equilibrium point in the array.
+    int findEquilibrium(vector<int> &arr){
+        int pref = 0, tot = 0;
+        //arr sum
+        for(int i : arr){
+            tot += i;
+        }
+        for(int i = 0;i<arr.size();i++){
+            //calculating suffing sum
+            int suf = tot - pref - arr[i];
+            
+            if(suf == pref){
+                return i;
+            }
+            //increasing pref sum
+            pref += arr[i];
+        }//tc: O(N); sC: O(1);
+        return -1;
+    }
