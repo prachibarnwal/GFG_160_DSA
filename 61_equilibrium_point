@@ -16,9 +16,9 @@ after it. Return -1 if no such point exists.
             tot += i;
         }
         for(int i = 0;i<arr.size();i++){
-            //calculating suffing sum
+            //calculating suffix sum
             int suf = tot - pref - arr[i];
-            
+            //checking if suffix is same as prefix or not
             if(suf == pref){
                 return i;
             }
