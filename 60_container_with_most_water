@@ -11,7 +11,9 @@ int maxWater(vector<int> &arr){
         int res =0;
         while(l < r){
             //calculating the current amount of water between two blocks
-            int w = min(arr[l], arr[r]) * (r - l) ;
+            int wid = r-l;
+            int height = min(arr[l], arr[r]);
+            int w = wid * height;
             //assigning the max amount of water to res
             res = max(res, w);
             
