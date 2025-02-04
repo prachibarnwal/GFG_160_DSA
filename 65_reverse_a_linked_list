@@ -1,0 +1,16 @@
+//Given the head of a linked list, the task is 
+to reverse this list and return the reversed head.
+
+Node* reverseList(struct Node* head){
+        Node *curr = head;
+        Node *prev = NULL;
+        
+        while(curr != NULL){
+            Node *Next = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = Next;
+        }
+        return prev;
+        //tc: O(n); sc: O(1);
+    }
