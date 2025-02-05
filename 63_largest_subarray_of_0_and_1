@@ -6,16 +6,19 @@ of the longest subarray with equal number of 0s and 1s.
 int maxLen(vector<int> &arr){
         unordered_map<int, int> m;
         int pref = 0, res = 0;
-        
+        //using hashmap and prefix sum technique
+        //considering 0 as -1
         for(int i=0; i< arr.size(); i++){
             pref += (arr[i] == 0 ? -1 : 1);
-            
+            //if prefix sum becomes 0 
             if(pref == 0)
                 res = i+1;
-                
+            //if pref exists which means subarray from prev 
+            //index +1 till curr index has equal 0's and 1's    
             if(m.find(pref) != m.end()){
                 res = max(res, i - m[pref]);
             }
+            //adding the pref sum to the map
             else{
                 m[pref] = i;
             }
