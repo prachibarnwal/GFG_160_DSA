@@ -1,0 +1,33 @@
+//Given the head of a singly linked list, your task is 
+//to left rotate the linked list k times.
+
+Node* rotate(Node* head, int k) {
+        //case of empty ll
+        if(head == NULL || k == 0)
+            return head;
+        
+        //length of ll
+        int len = 1;
+        Node* curr = head;
+        while(curr -> next != NULL){
+            len++;
+            curr = curr -> next;
+        }
+        //since k should be lesser than len of ll
+        k %= len;
+        //case of no rotation 
+        if(k == 0) return head;
+        
+        //making it a circular ll
+        curr -> next = head;
+        //traversing till the kth node
+        curr = head;
+        for(int i = 1; i<k; i++){
+            curr = curr -> next;
+        }
+        head = curr -> next;
+        //breaking the link of the kth node
+        curr -> next = NULL;
+        //tc: O(n); sc: O(1);
+        return head;
+    }
