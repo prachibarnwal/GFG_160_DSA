@@ -6,9 +6,13 @@ Node* reverseList(struct Node* head){
         Node *prev = NULL;
         
         while(curr != NULL){
+            //we won't be losing data afterwards
             Node *Next = curr -> next;
+            //linking current node with previous one
             curr -> next = prev;
+            //setting previous to the next node
             prev = curr;
+            //setting current to the next node
             curr = Next;
         }
         return prev;
