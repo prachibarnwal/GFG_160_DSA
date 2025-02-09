@@ -4,7 +4,7 @@ The task is to merge both lists and return the head of the sorted merged list.
 */
 
 Node* sortedMerge(Node* head1, Node* head2){
-        if(head1 == NULL){
+        if(!head1){
             return head2;
         }
         if(head2 == NULL){
@@ -27,6 +27,7 @@ Node* sortedMerge(Node* head1, Node* head2){
         if(head1){
             curr -> next = head1;
         }
+        //if second ll still has elements
         if(head2){
             curr -> next = head2;
         }
