@@ -1,0 +1,41 @@
+/*
+Given the head a linked list, the task is to reverse every k 
+node in the linked list. If the number of nodes is not a 
+multiple of k then the left-out nodes in the end, should 
+be considered as a group and must be reversed.
+*/
+
+Node *reverseKGroup(Node *head, int k){
+        if(k == 1 || head == nullptr)
+            return head;
+        
+        Node *temp = new Node(0);
+        temp -> next = head;
+        Node *prevG = temp;
+        
+        while(head != NULL){
+            Node *tail = head;
+            int cnt = 0;
+            //counting no. of nodes;
+            while(cnt < k && tail != nullptr){
+                tail = tail -> next;
+                cnt++;
+            }
+            //reversing group of k / <k nodes
+            Node *prev = nullptr, *curr = head;
+            for(int i = 0;i<cnt;i++){
+                Node *Next = curr -> next;
+                curr -> next = prev;
+                prev = curr;
+                curr = Next;
+            }
+            //connecting prev grp with the new one
+            prevG -> next = prev;
+            head -> next = curr;
+            
+            //moving to the next grp
+            prevG = head;
+            head = curr;
+        }//tc: O(n); sc: O(1);
+        return temp -> next;
+    }
