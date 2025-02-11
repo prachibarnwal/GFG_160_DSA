@@ -51,15 +51,17 @@ Node *reverse(Node *head){
         
         Node *res = n1;
         
-        while(n1 != NULL || n2 != nullptr || carry != 0){
+        while(n1 || n2 || carry != 0){
             n1 -> data += carry;
+            //case where n2 is not exhausted
             if(n2 != NULL){
                 n1 -> data += n2 -> data;
                 n2 = n2 -> next;
             }
+            //storing carry and reducing current node's sum
             carry = n1 -> data / 10;
             n1 -> data = n1 -> data % 10;
-            
+            //in case where n1 is exhausted and carry still exists
             if(n1 -> next == NULL && carry != 0){
                 n1 -> next = new Node(0);
             }
