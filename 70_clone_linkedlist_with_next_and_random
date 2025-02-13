@@ -12,39 +12,43 @@ Return the head of the copied linked list.
 NOTE : Original linked list should remain unchanged.
 */
 
-Node *cloneLinkedList(Node *head) {
-        // Write your code here
-        if(head == nullptr){
-            return NULL;
+Node *cloneLinkedList(Node *head){
+        //base case
+        if(head == NULL){
+            return head;
         }
+        //inserting new node in between two original nodes
         Node *curr = head;
         while(curr != NULL){
-            Node *newNode = new Node(curr -> data);
-            newNode -> next = curr -> next;
-            curr -> next = newNode;
-            curr = newNode -> next;
+            Node *temp = new Node(curr -> data);
+            temp -> next = curr -> next;
+            curr -> next = temp;
             
-        }
-        curr = head;
-        while(curr != NULL){
-            if(curr -> random != NULL){
-                curr -> next -> random = curr -> random -> next;
-            }
             curr = curr -> next -> next;
         }
+        //marking random pointers of the orginal LL 
+        //to random pointers of the cloned LL
         curr = head;
-        Node *ch = head -> next;
-        Node *clone = ch;
-        while(clone -> next != NULL){
+        while(curr != NULL){
+            if(curr -> random != nullptr)
+                curr -> next -> random = curr -> random -> next;
+            
+            curr = curr -> next -> next;
+        }
+        //separating the original LL and the cloned LL
+        curr = head;
+        Node *cloneHead = curr -> next;
+        Node *cloneCurr = cloneHead;
+        while(cloneCurr -> next != NULL){
             curr -> next = curr -> next -> next;
-            clone -> next = clone -> next -> next;
+            cloneCurr -> next = cloneCurr -> next -> next;
             
             curr = curr -> next;
-            clone = clone -> next;
+            cloneCurr = cloneCurr -> next;
         }
         curr -> next = NULL;
-        clone -> next = NULL;
-        return ch;
-        //tc: O(N) + O(N) + O(N) ~ O(3N) ~ O(N);
-        //sc: O(1);
+        cloneCurr -> next = NULL;
+        
+        return cloneHead;
+        //tc: O(3N); sc: O(1);
     }
