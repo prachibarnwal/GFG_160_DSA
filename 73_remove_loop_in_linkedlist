@@ -32,9 +32,8 @@ nodes in the list remain unchanged, otherwise, false.
                     f = f -> next;
                 }
                 //going to the last node
-                while(f -> next != s){
+                while(f -> next != s)
                     f = f-> next;
-                }
                 //setting the last node as NULL to break the loop
                 f -> next = NULL;
             }
