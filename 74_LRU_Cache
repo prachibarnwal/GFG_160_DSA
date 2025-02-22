@@ -12,9 +12,85 @@ pair to the cache. If the cache reaches its capacity it should remove the least 
 In the constructor of the class the capacity of the cache should be initialized.
 */
 
+struct Node{
+    int key;
+    int value;
+    Node *next;
+    Node *prev;
+    Node(int a, int b){
+        key = a;
+        value = b;
+        next = NULL;
+        prev = NULL;
+    }
+};
+
 class LRUCache {
-  private:
   public:
+    //constructor
+    int cap;
+    unordered_map<int, Node*> mp;
+    Node *head = new Node(-1, -1);
+    Node *tail = new Node(-1,-1);
+    
+    LRUCache(int cap){
+        this -> cap = cap;
+        head -> next = tail;
+        tail -> prev = head;
+    }
+    //to get a value from given key
+    int get(int key){
+        //if key doesn't exist
+        if(mp.find(key) == mp.end())
+            return -1;
+        
+        Node *temp = mp[key];
+        //removing from DLL from its original place
+        remove(temp);
+        //adding it to front
+        add(temp);
+        //returning value of the given key
+        return temp -> value;
+    }
+    //to put a key-value pair in the hash map
+    void put(int key, int val){
+        //checking if the key already exists deleting it
+        if(mp.find(key) != mp.end()){
+            Node *temp = mp[key];
+            //removing temp from dll and deleting it from memory
+            remove(temp);
+            delete temp;
+        }
+        //adding the new node to DLL and replacing it's
+        //value in hashmap with the new (if key already existed)
+        Node *curr = new Node(key, val);
+        add(curr);
+        mp[key] = curr; 
+        //if DLL's size increases from capacity
+        if(mp.size() > cap){
+            Node *deletion = tail -> prev;
+            mp.erase(deletion -> key);
+            remove(deletion);
+            delete deletion;
+        }
+    }
+    //to add node in the head of a DLL
+    void add(Node *temp){
+        temp -> next = head -> next;
+        head -> next -> prev = temp;
+        temp -> prev = head;
+        head -> next = temp;
+    }
+    //to remove last node from a DLL
+    void remove(Node *temp){
+        Node *prevNode = temp -> prev;
+        Node *nextNode = temp -> next;
+        prevNode -> next = nextNode;
+        nextNode -> prev = prevNode;
+    }
+    
+    /*
+    // using inbuilt Doubly Linked List
     int cap;
     list<pair<int, int>> L;
     unordered_map<int, list<pair<int, int>>::iterator> cacheMap;
@@ -60,4 +136,5 @@ class LRUCache {
         //tc: O(1);
     }
     //sc: O(cap);
+    */
 };
