@@ -7,9 +7,9 @@ Node* sortedMerge(Node* head1, Node* head2){
         if(!head1){
             return head2;
         }
-        if(head2 == NULL){
+        if(head2 == NULL)
             return head1;
-        }
+        
         Node *temp = new Node(0);
         Node *curr = temp;
         while(head1 && head2){
