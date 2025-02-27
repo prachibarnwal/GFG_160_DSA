@@ -14,7 +14,7 @@ void gen(int n, string &curr, unordered_map<char, int> &cnt, vector<string> &res
         cnt[c]--;
         
         gen(n, curr, cnt, res);
-        
+
         curr.pop_back();
         cnt[c]++;
     }
