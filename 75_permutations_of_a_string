@@ -1,34 +1,34 @@
-void gen(int n, string &curr, unordered_map<char, int> &cnt, vector<string> &res){
-    if(curr.size() == n){
-        res.push_back(curr);
-        return;
-    }
-    for(pair<char, int> it:cnt){
-        char c = it.first;
-        int count = it.second;
-    
-        if(count == 0){
-            continue;
-        }
-        curr.push_back(c);
-        cnt[c]--;
-        
-        gen(n, curr, cnt, res);
+/*
+Given a string s, which may contain duplicate characters, 
+your task is to generate and return an array of all unique 
+permutations of the string. You can return your answer in any order.
+*/
 
-        curr.pop_back();
-        cnt[c]++;
-    }
-  }
-    vector<string> findPermutation(string &s) {
-        // Code here there
-        vector<string> res;
-        unordered_map<char, int>cnt;
-        for(char c:s){
-            cnt[c]++;
+void solve(string s, vector<string> &res, int ind){
+        //base case
+        if(ind >= s.size()){
+            res.push_back(s);
+            return;
         }
-        string curr = "";
-        
-        gen(s.size(), curr, cnt, res);
+        unordered_set<char> used;
+        for(int j = ind; j<s.size(); j++){
+            //to avoid duplicates
+            if(used.find(s[j]) != used.end())
+                continue;
+            used.insert(s[j]);
+            
+            swap(s[j], s[ind]);
+            
+            solve(s, res, ind+1);
+            //backtracking
+            swap(s[j], s[ind]);
+        }
+    }
+    vector<string> findPermutation(string &s){
+        vector<string> res;
+        int ind = 0;
+        solve(s,res, ind);
         
         return res;
-    }
+    }//tc: O(n*n!);
+    //sc: O(n!);
