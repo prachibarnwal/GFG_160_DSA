@@ -12,8 +12,8 @@ int myAtoi(char *s) {
         int sign = 1;
         int result = 0;
         int indx = 0;
-        
-        //blank spaces
+
+        //blank spaces;
         while(s[indx] == ' ')
             indx++;
         
