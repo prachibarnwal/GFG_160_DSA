@@ -9,7 +9,7 @@ void mergeArrays(vector<int>& a, vector<int>& b) {
         //chalo chalein 
         int m = a.size();
         int n = b.size();
-        
+
         int i = m - 1, j = 0;
         //solving it through swap and sort technique
         while(i >= 0 && j < n && a[i] > b[j]){
