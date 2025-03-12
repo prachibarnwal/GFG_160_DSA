@@ -17,7 +17,7 @@ int circularSubarraySum(vector<int> &arr) {
             //total array sum
             totalSum += arr[i];
         }
-        
+
         int cirSum = totalSum - minSum;
         if(minSum == totalSum)
             return maxSum;
