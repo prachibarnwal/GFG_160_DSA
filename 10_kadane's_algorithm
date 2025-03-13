@@ -12,6 +12,6 @@ int maxSubarraySum(vector<int> &arr) {
             //assigning the maximum sum of subarray to res
             res = max(res, maxEnd);
         }
-        
+
         return res;
     }
