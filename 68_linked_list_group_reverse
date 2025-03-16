@@ -8,7 +8,7 @@ be considered as a group and must be reversed.
 Node *reverseKGroup(Node *head, int k){
         if(k == 1 || head == nullptr)
             return head;
-        
+
         Node *temp = new Node(0);
         temp -> next = head;
         Node *prevG = temp;
