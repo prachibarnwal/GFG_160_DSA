@@ -6,7 +6,7 @@ is to return an array while traversing the matrix in spiral form.
 vector<int> spirallyTraverse(vector<vector<int> > &mat) {
         int row = mat.size();
         int col = mat[0].size();
-        
+
         int top = 0, bottom = row - 1;
         int left = 0, right = col - 1;
         //using boundary traversal
