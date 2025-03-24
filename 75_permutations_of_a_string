@@ -18,7 +18,7 @@ void solve(string s, vector<string> &res, int ind){
             used.insert(s[j]);
             
             swap(s[j], s[ind]);
-            
+        
             solve(s, res, ind+1);
             //backtracking
             swap(s[j], s[ind]);
