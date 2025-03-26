@@ -6,7 +6,7 @@ string trimlz(const string &s){
         //trimming leading zeroes
         s1 = trimlz(s1);
         s2 = trimlz(s2);
-        
+
         //calc size of both the strings
         int n = s1.size();
         int m = s2.size();
