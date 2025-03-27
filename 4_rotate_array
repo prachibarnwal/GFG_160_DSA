@@ -12,7 +12,7 @@ void reverse(vector<int> &arr, int start, int end){
         // chalo start karein 
         int n = arr.size();
         if(d > n) d = d%n;
-        
+
         //first half reversal
         reverse(arr, 0, d-1);
         //second half reversal
