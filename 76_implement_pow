@@ -1,0 +1,32 @@
+/*
+Implement the function power(b, e), which calculates b raised to the power of e (i.e. be).
+*/
+double power(double b, int e) {
+        
+        /*
+        // base case for recursive method
+        if(e == 0){
+            return 1;
+        }
+        if(e < 0){
+            return 1 / power(b, -e);
+        }
+        //tc: O(e); sc: O(e);
+        return b * power(b, e-1);
+        */
+        //base case but this time, for divide and conquer method
+        if(e == 0){
+            return 1;
+        }
+        if(e < 0){
+            return 1 / power(b, -e);
+        }
+        double poww = power(b, e / 2);
+        //in case e is even we need to double the res
+        if(e % 2 == 0)
+            return poww * poww;
+        //in case e is odd, res should be "double X b"
+        else
+            return b * poww * poww;
+        //tc: O(log e); sc: O(log e);
+    }
