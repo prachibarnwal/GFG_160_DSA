@@ -6,7 +6,7 @@ numbers of pairs in array arr[] which sums up to given target.
 int countPairs(vector<int> &arr, int target) {
         unordered_map<int, int> s;
         int cnt = 0, rem;
-        
+
         for(int i = 0; i<arr.size(); i++){
             rem = target - arr[i];
             
