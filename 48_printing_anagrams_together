@@ -8,7 +8,7 @@ const int mx = 26;
 string getHash(string &s){
         string hash;
         vector<int> f(mx, 0);
-        
+
         for(char ch : s){
             f[ch - 'a']++;
         }
