@@ -3,7 +3,7 @@ int maxProduct(vector<int> &arr) {
         //Approach 1
         int maxEnd = arr[0];
         int minEnd = arr[0];
-        int maxProd = arr[0];;
+        int maxProd = arr[0];
         int temp;
         int n = arr.size();
         for(int i = 1;i<n;i++){
