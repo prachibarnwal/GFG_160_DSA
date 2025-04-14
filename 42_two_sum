@@ -12,7 +12,7 @@
         }
         return false;
     }
-    
+
     bool twoSum(vector<int>& arr, int target){
         sort(arr.begin(), arr.end());
         int n = arr.size(), rest;
