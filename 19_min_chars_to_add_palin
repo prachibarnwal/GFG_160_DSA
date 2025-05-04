@@ -7,7 +7,7 @@ that reads the same forward and backward.
 */
 
 vector<int> computeLPS(string &s){
-        int n = s.length(), len = 0, i = 1;    
+        int n = s.length(), len = 0, i = 1; 
         vector<int> lps(n);
 
         lps[0] = 0;
