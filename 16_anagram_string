@@ -5,7 +5,7 @@ is another string that contains the same characters, only the order of character
 be different. For example, "act" and "tac" are an anagram of each other. Strings s1 and 
 s2 can only contain lowercase alphabets.
 
-Note: You can assume both the strings s1 & s2 are non-empty.
+Note: You can assume both the strings s1 & s2 are non-empty..
 '''
 class Solution:
     
