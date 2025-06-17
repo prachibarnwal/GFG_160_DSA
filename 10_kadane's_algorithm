@@ -4,7 +4,8 @@ int maxSubarraySum(vector<int> &arr) {
         int res = arr[0], maxEnd = arr[0];
 
         for(int i = 1;i<n;i++){
-            //start of a new subarray from index i or
+            //start of a new subarray from index i 
+            //or
             //calculating maximum sumtill that index i
             maxEnd = max(maxEnd + arr[i], arr[i]);
             
