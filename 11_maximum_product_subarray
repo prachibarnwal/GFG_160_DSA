@@ -6,6 +6,7 @@ int maxProduct(vector<int> &arr) {
         int maxProd = arr[0];
         int temp;
         int n = arr.size();
+
         for(int i = 1;i<n;i++){
             temp = max(arr[i], max(minEnd * arr[i], maxEnd * arr[i]));
             minEnd = min(arr[i], min(minEnd * arr[i], maxEnd * arr[i]));
