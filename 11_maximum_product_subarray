@@ -15,6 +15,7 @@ int maxProduct(vector<int> &arr) {
         }
         return maxProd;
         */
+
         //Approach 2
         int n = arr.size();
         int maxProd = INT_MIN;
