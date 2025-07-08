@@ -1,6 +1,5 @@
 /*
 Cases for atoi() conversion:
-
 Skip any leading whitespaces.
 Check for a sign (‘+’ or ‘-‘), default to positive if no sign is present.
 Read the integer by ignoring leading zeros until a non-digit character is encountered or end of the string is reached.
