@@ -29,6 +29,5 @@ int maxProduct(vector<int> &arr) {
             rtl *= arr[n-i-1];
             
             maxProd = max(maxProd, max(rtl, ltr));
-        }
-        return maxProd;
+        }return maxProd;
     }
