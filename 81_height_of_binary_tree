@@ -1,0 +1,33 @@
+/*
+class Node {
+public:
+    int data;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+*/
+class Solution {
+  public:
+    int height(Node* root) {
+        // code here
+        if(!root) return 0;
+        queue<Node *> q;
+        q.push(root);
+        int depth = 0;
+        
+        while(!q.empty()){
+            int levelSize = q.size();
+            for(int i = 0; i< levelSize; i++){
+                Node *curr = q.front();
+                q.pop();
+                if(curr -> left) q.push(curr -> left);
+                if(curr -> right) q.push(curr -> right);
+            }depth++;
+        }return depth-1;
+    }
+};
