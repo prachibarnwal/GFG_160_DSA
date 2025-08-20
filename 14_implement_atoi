@@ -7,7 +7,7 @@ If no digits are present, return 0.
 If the integer is greater than 231 – 1, then return 231 – 1 and if the integer is smaller than -231, then return -231.
 */
 
-int myAtoi(char *s) {
+int myAtoi(char *s){
         
         int sign = 1;
         int result = 0;
